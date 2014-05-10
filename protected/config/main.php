@@ -6,7 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-    'theme'=> 'bootstrap',
+    'theme'=> 'hacktime',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'ToDoshka',
     'language'=>'ru',
@@ -32,6 +32,7 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
+            'class' => 'WebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
@@ -45,6 +46,12 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
+        'authManager' => array(
+            // Будем использовать свой менеджер авторизации
+            'class' => 'PhpAuthManager',
+            // Роль по умолчанию. Все, кто не админы, модераторы и юзеры — гости.
+            'defaultRoles' => array('guest'),
+        ),
         /*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
@@ -52,7 +59,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		*/
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=todoshka',
+			'connectionString' => 'mysql:host=localhost;dbname=hacktime',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '123',

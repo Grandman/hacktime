@@ -27,9 +27,17 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+        if (Yii::app()->User->role != 'administrator')
+        {
+            Yii::app()->getController()->redirect(array('users/index'));
+            $this->layout = '//layouts/register';
+            $this->render('index');
+        }
+        else
+        {
+            $this->render('index');
+        }
+
 	}
 
 	/**

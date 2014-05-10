@@ -1,9 +1,0 @@
-$(document).ready(function(){
-    $(".list-group-item").hover(
-        function(){
-            $(this).children(".project-list-mng").show();
-        },
-        function(){
-            $(this).children(".project-list-mng").hide();
-        });
-});
